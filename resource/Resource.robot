@@ -116,3 +116,96 @@ Então verei a página "${MYACCOUNT}"
     Page Should Contain Element       xpath=//*[@id="center_column"]/ul/li/a/span/i
     Page Should Contain Element       xpath=//*[@id="columns"]/div[1]/span[2][contains(text(),'${MYACCOUNT}')]
     Capture Page Screenshot
+
+# BuyingProductBdd.robot
+E informo meu email "${LOGINEMAIL}" e minha senha "${LOGINPASS}" para logar
+    Wait Until Element Is Visible    id=email
+    Input Text    id=email    ${LOGINEMAIL}
+    Input Text    id=passwd   ${LOGINPASS}
+
+Quando eu clicar em "Sign in"
+    Click Button    id=SubmitLogin
+
+
+# Process BuyingProductBdd
+E clico na Categoria "${CATEGORY}" e logo em seguida na subcategoria "${SubCATEGORY}"
+    Wait Until Element Is Visible    xpath=//*[@id="center_column"]/ul/li/a
+    Mouse Up      xpath=//*[@id="block_top_menu"]/ul/li/a[contains(text(),'${CATEGORY}')]
+    Wait Until Page Contains Element  xpath=//*[@id="block_top_menu"]/ul/li[2]/ul/li/a[contains(text(),'${SubCATEGORY}')]
+    Sleep   2s
+    Mouse Over    xpath=//*[@id="block_top_menu"]/ul/li[2]/ul/li/a[contains(text(),'${SubCATEGORY}')]
+    Click Link    xpath=//*[@id="block_top_menu"]/ul/li[2]/ul/li/a[contains(text(),'${SubCATEGORY}')]
+
+E clico no vestido "${PRODUTO}"
+    Wait Until Page Contains Element    xpath=//*[@id="center_column"]/ul/li/div/div/h5/a[contains(text(),'${PRODUTO}')]
+    Sleep   2s
+    Scroll Page To Location    0    400
+    Mouse Over    xpath=//*[@id="center_column"]/ul/li/div/div/h5/a[contains(text(),'${PRODUTO}')]
+    Click Link    xpath=//*[@id="center_column"]/ul/li/div/div/h5/a[contains(text(),'${PRODUTO}')]
+
+E clico na cor "Rosa" e escolho o tamanho "M"
+    Wait Until Page Contains Element    id=color_24
+    Click Link    id=color_24
+    Select From List By Index    id=group_1     1
+
+E clico no botão "Add to Cart" e Continuar Comprando
+    Click Button    name=Submit
+    Sleep    4s
+    Click Element    xpath=//*[@id="layer_cart"]/div[1]/div[2]/div[4]/span
+
+E clico na cor "Bege" e escolho o tamanho "P"
+    Wait Until Page Contains Element    id=color_24
+    Click Link    id=color_7
+    Select From List By Index    id=group_1     0
+
+E clico no botão "Add to Cart" e "Proceed to checkout"
+    Click Button    name=Submit
+    Sleep    4s
+    Click Element    xpath=//*[@id="layer_cart"]/div[1]/div[2]/div[4]/a
+
+Quando estiver no carrinho clico no botão "Proceed to checkout"
+    Wait Until Page Contains Element    xpath=//*[@id="center_column"]/p[2]/a[1]
+    Click Element    xpath=//*[@id="center_column"]/p[2]/a[1]
+
+E na tela de Endereço clico no botão "Proceed to checkout"
+    Wait Until Page Contains Element    name=processAddress
+    Click Button    name=processAddress
+
+E na tela de Entrega Leio e Confirmo os termos
+    Wait Until Page Contains Element    xpath=//*[@id="form"]/div/p[2]/a
+    Click Link    xpath=//*[@id="form"]/div/p[2]/a
+    Sleep    4s
+    Capture Page Screenshot
+    Click Element    xpath=//*[@id="order"]/div[2]/div/div/a
+    Sleep    3s
+    Click Element    id=cgv
+
+E clico no botão "Proceed to checkout"
+    Click Button    name=processCarrier
+
+E Seleciono a opção Pagar com Cheque
+    Wait Until Page Contains Element    xpath=//*[@id="HOOK_PAYMENT"]/div[2]/div/p
+    Scroll Page To Location    0    400
+    Click Element    xpath=//*[@id="HOOK_PAYMENT"]/div[2]/div/p
+
+E clico no botão "I confirm my order"
+    Wait Until Page Contains Element    xpath=//*[@id="cart_navigation"]/button
+    Click Element    xpath=//*[@id="cart_navigation"]/button
+
+E clico para acessar a Central do Cliente
+    Wait Until Page Contains Element    xpath=//*[@id="header"]/div[2]/div/div/nav/div[1]/a
+    Click Link    xpath=//*[@id="header"]/div[2]/div/div/nav/div[1]/a
+
+E logo em seguida clico no botão "Order history and details"
+    Wait Until Page Contains Element    xpath=//*[@id="center_column"]/div/div[1]/ul/li[1]/a
+    Click Element    xpath=//*[@id="center_column"]/div/div[1]/ul/li[1]/a
+
+Então veria os pedidos na página "${PAGENAME}"
+    Wait Until Page Contains Element    xpath=//*[@id="columns"]/div[1]/span[3]
+    Title Should Be                   Order history - My Store
+    Page Should Contain Element    //*[@id="columns"]/div[1]/span[contains(text(),'${PAGENAME}')]
+    Capture Page Screenshot
+
+Scroll Page To Location
+    [Arguments]    ${x_location}    ${y_location}
+    Execute JavaScript    window.scrollTo(${x_location},${y_location})

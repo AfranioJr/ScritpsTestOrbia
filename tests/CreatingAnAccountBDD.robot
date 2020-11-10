@@ -11,7 +11,7 @@ Cenario 01: Acessar a Tela de Login
 #
 Cenário 02: Acessar a tela de Cadastro
     Dado que estou na página de Login do Site
-    E no campo "Email adress" informar o meu e-mail "afraniojr@orbia.ag"
+    E no campo "Email adress" informar o meu e-mail "afraniojlr@orbia.ag"
     Quando eu clicar no botão "Create an account"
     Então serei direcionado para o formulario "Your personal information"
 #
