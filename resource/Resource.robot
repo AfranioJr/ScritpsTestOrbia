@@ -209,3 +209,30 @@ Então veria os pedidos na página "${PAGENAME}"
 Scroll Page To Location
     [Arguments]    ${x_location}    ${y_location}
     Execute JavaScript    window.scrollTo(${x_location},${y_location})
+
+
+#EvaluatingProducts
+Quando estiver na página de detalhes do produto Clico em "Write a review"
+    Wait Until Page Contains Element    xpath=//*[@id="product_comments_block_extra"]
+    Click Link    xpath=//*[@id="product_comments_block_extra"]/ul/li/a
+
+E avalio o produto com 5 estrelas
+    Wait Until Page Contains Element    xpath=//*[@id="criterions_list"]/li/div[1]/div[6]/a
+    Click Element    xpath=//*[@id="criterions_list"]/li/div[1]/div[6]/a
+
+E dou um Titulo para meu comentario "${TITULOCOMENTARIO}"
+    Input Text    name=title    ${TITULOCOMENTARIO}
+
+E informo uma mensagem "${CONTEUDO}"
+    Input Text    name=content    ${CONTEUDO}
+
+E clico no botão "Send"
+    Click Button    id=submitNewMessage
+
+E eu vejo a Mensagem de confirmação "${NCOMMENT}"
+    Wait Until Page Contains Element    xpath=//*[@id="product"]/div[2]/div/div/div/h2
+    Page Should Contain Element    xpath=//*[@id="product"]/div[2]/div/div/div/h2[contains(text(),'${NCOMMENT}')]
+    Capture Page Screenshot
+
+Então Clico no botão "OK"
+    Click Element    xpath=//*[@id="product"]/div[2]/div/div/div/p[2]/button

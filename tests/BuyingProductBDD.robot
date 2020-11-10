@@ -7,7 +7,7 @@ Test Teardown   Fechar Navegador
 Cenario 01: Efetuar Login
     Dado que estou na página home do Site
     E clico no botão "Sign in"
-    E informo meu email "clientecomprador@comprador.com" e minha senha "pr19o0bv" para logar
+    E informo meu email "afraniojrcomprador@orbia.ag" e minha senha "afranio123" para logar
     Quando eu clicar em "Sign in"
     Então verei a página "My account"
 
@@ -36,6 +36,6 @@ E clico no botão "Sign in"
 Dado que eu estou Logado
       Dado que estou na página home do Site
       Quando eu clicar no botão "Sign in"
-      E informo meu email "clientecomprador@comprador.com" e minha senha "pr19o0bv" para logar
+      E informo meu email "afraniojrcomprador@orbia.ag" e minha senha "afranio123" para logar
       Quando eu clicar em "Sign in"
       Então verei a página "My account"
