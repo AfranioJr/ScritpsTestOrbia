@@ -1,7 +1,7 @@
 *** Settings ***
 Resource        ../resource/Resource.robot
 Test Setup      Abrir Navegador
-# Test Teardown   Fechar Navegador
+Test Teardown   Fechar Navegador
 
 *** Test Case ***
 Cenario 01: Efetuar Login
